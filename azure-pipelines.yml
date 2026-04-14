@@ -1,0 +1,20 @@
+
+trigger:
+- main
+
+pool:
+  taskify-pool
+
+steps:
+   displayName: 'Run a multi-line script'
+- task: TerraformTask@5
+  inputs:
+    provider: 'azurerm'
+    command: 'init'
+    workingDirectory: '$(System.DefaultWorkingDirectory)\env\dev'
+    backendServiceArm: 'Azure subscription 1(11100f00-f288-40b5-934d-b9ded6ba5396)'
+    backendAzureRmOverrideSubscriptionID: '11100f00-f288-40b5-934d-b9ded6ba5396'
+    backendAzureRmResourceGroupName: 'taskify'
+    backendAzureRmStorageAccountName: 'taskifystorage123'
+    backendAzureRmContainerName: 'taskifycontainer'
+    backendAzureRmKey: 'taskifykey'
