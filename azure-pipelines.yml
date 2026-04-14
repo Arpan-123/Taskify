@@ -21,3 +21,16 @@ steps:
     inputs:
       targetType: 'inline'
       script: 'terraform -version'
+  - task: TerraformTask@5
+    inputs:
+      provider: 'azurerm'
+      command: 'validate'
+      workingDirectory: '$(System.DefaultWorkingDirectory)/env/dev'
+
+  - task: TerraformTask@5
+    inputs:
+      provider: 'azurerm'
+      command: 'plan'
+      workingDirectory: '$(System.DefaultWorkingDirectory)/env/dev'
+      environmentServiceNameAzureRM: 'techops-taskify'
+      environmentAzureRmOverrideSubscriptionID: '11100f00-f288-40b5-934d-b9ded6ba5396'
